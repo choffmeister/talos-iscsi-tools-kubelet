@@ -1,0 +1,14 @@
+name: iscsi-tools-kubelet
+depends:
+  - service: kubelet
+container:
+  entrypoint: ./iscsiadm-injector
+  mounts:
+    - source: /
+      destination: /host
+      type: bind
+      options:
+        - rshared
+        - rbind
+        - rw
+restart: always
